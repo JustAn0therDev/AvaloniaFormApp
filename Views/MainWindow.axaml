@@ -32,6 +32,8 @@
             HorizontalAlignment="Right"
             Margin="15"
             Command="{Binding LoginCommand}"/>
+        
+        <TextBlock HorizontalAlignment="Center" Text="Loading..." IsVisible="{Binding IsLoadingVisible}"/>
     </StackPanel>
 
 </Window>

@@ -17,13 +17,20 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(LoginCommand))]
     private string _password = string.Empty;
+    
+    [ObservableProperty]
+    private bool _isLoadingVisible;
 
     [RelayCommand(CanExecute = nameof(CanLogin))]
     private async Task Login()
     {
+        IsLoadingVisible = true;
+        
         await Task.Delay(TimeSpan.FromSeconds(2));
         
         Greeting = $"Welcome, {Username}!";
+        
+        IsLoadingVisible = false;
     }
     
     private bool CanLogin() => !string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password);
