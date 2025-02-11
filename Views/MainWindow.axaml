@@ -34,6 +34,7 @@
             Command="{Binding LoginCommand}"/>
         
         <TextBlock HorizontalAlignment="Center" Text="Loading..." IsVisible="{Binding IsLoadingVisible}"/>
+        <ProgressBar Height="15" ShowProgressText="True" Minimum="0" Maximum="100" Value="{Binding LoadingProgress}" IsVisible="{Binding IsLoadingVisible}"> </ProgressBar>
     </StackPanel>
 
 </Window>
