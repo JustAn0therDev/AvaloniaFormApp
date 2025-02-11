@@ -1,0 +1,37 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AvaloniaFormApp.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvaloniaFormApp.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="AvaloniaFormApp">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <StackPanel Margin="20" HorizontalAlignment="Center">
+        <TextBlock
+            Text="{Binding Greeting}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center" />
+        <Grid ColumnDefinitions="100, 100" RowDefinitions="Auto, Auto" Margin="10">
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Username" VerticalAlignment="Center" Margin="5" />
+            <TextBox Grid.Row="0" Grid.Column="1" Name="Username" Text="{Binding Username}" Margin="5" />
+
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="Password" VerticalAlignment="Center" Margin="5" />
+            <TextBox Grid.Row="1" Grid.Column="1" Name="Password" Text="{Binding Password}" PasswordChar="*" Margin="5" />
+        </Grid>
+        <Button
+            Content="Login"
+            HorizontalAlignment="Right"
+            Margin="15"
+            Command="{Binding LoginCommand}"/>
+    </StackPanel>
+
+</Window>
