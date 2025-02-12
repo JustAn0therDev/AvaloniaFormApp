@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace AvaloniaFormApp.ViewModels;
 
@@ -22,27 +23,14 @@ public partial class MainWindowViewModel : ViewModelBase
     [RelayCommand(CanExecute = nameof(CanLogin))]
     private async Task Login()
     {
-        Task loadingProgress = ProgressUp();
+        Messenger.Send(new LoginEvent(Username));
         
-        IsLoadingVisible = true;
-
         await Task.Delay(TimeSpan.FromSeconds(2));
 
-        await loadingProgress;
-
-        IsLoadingVisible = false;
-        
-        Greeting = $"Welcome, {Username}!";
-    }
-
-    private async Task ProgressUp()
-    {
-        while (LoadingProgress < 100)
-        {
-            await Task.Delay(TimeSpan.FromMilliseconds(20));
-            LoadingProgress++;
-        }
+        Messenger.Send(new LoginEvent(Username));
     }
 
     private bool CanLogin() => !string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password);
 }
+
+public record LoginEvent(string Username);

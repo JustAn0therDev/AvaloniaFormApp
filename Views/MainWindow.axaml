@@ -33,8 +33,9 @@
             Margin="15"
             Command="{Binding LoginCommand}"/>
         
-        <TextBlock HorizontalAlignment="Center" Text="Loading..." IsVisible="{Binding IsLoadingVisible}"/>
-        <ProgressBar Height="15" ShowProgressText="True" Minimum="0" Maximum="100" Value="{Binding LoadingProgress}" IsVisible="{Binding IsLoadingVisible}"> </ProgressBar>
+        <Grid x:DataType="vm:LoadingViewModel" x:Name="LoadingGrid">
+            <TextBlock HorizontalAlignment="Center" Text="{Binding StatusMessage}" IsVisible="{Binding IsLoadingVisible}"/>
+        </Grid>
     </StackPanel>
 
 </Window>
